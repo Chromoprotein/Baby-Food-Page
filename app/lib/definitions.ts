@@ -3,6 +3,7 @@ export type BabyFood = {
     name: string;
     category: string;
     age: number;
+    opinion: string;
 };
 
 export type User = {
@@ -19,6 +20,7 @@ export type Log = {
     category: string;
     age: number;
     date: string;
+    opinion: string;
 }
 
 export type InfoCardProps = {
@@ -38,4 +40,10 @@ export type ButtonProps = {
 export type CaterpillarButtonProps = {
   options: string[];
   label: string;
+  selectedOption: string;
+}
+
+export type FoodCardPartProps = {
+  opinion: JSX.Element;
+  foods: BabyFood[];
 }

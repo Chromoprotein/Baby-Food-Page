@@ -25,7 +25,7 @@ export async function fetchFoodLog(user_id: string) {
     noStore();
     try {
 
-        const data = await sql<BabyFood>`SELECT bf.id, bf.name, bf.category, bf.age, fl.date 
+        const data = await sql<BabyFood>`SELECT bf.id, bf.name, bf.category, bf.age, fl.date, fl.opinion 
         FROM foodlog fl
         JOIN babyfoods bf ON fl.food_id = bf.id 
         WHERE fl.user_id = ${user_id}`;

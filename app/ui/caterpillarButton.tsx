@@ -1,16 +1,20 @@
 import { CaterpillarButtonProps } from "../lib/definitions";
 import clsx from 'clsx';
 
-export default function CaterpillarButton({options, label}: CaterpillarButtonProps) {
+export default function CaterpillarButton({options, label, selectedOption}: CaterpillarButtonProps) {
 
     const optionsLength = options.length - 1;
     const caterpillarButtons = options.map((option, index) => {
         return (
             <button 
-                key={index} 
-                className={clsx('bg-amber-300 py-3 px-4 hover:bg-amber-500 text-sm font-bold text-lime-800',
+                key={index}
+                name={label}
+                value={option}
+                className={clsx('py-3 px-4 hover:bg-amber-500 text-sm font-bold text-lime-800',
                 {'rounded-l-full': index === 0},
                 {'rounded-r-full': index === optionsLength },
+                {'bg-green-300': selectedOption === option},
+                {'bg-amber-300': selectedOption !== option}
                 )}
             >
                 {option}
