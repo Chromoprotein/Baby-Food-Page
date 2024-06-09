@@ -6,6 +6,8 @@ export async function fetchBabyFoods(user_id: string) {
     noStore();
     try {
 
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        
         const data = await sql<BabyFood>`SELECT bf.id, bf.name, bf.category, bf.age 
         FROM babyfoods bf
         WHERE bf.id NOT IN (
@@ -25,6 +27,8 @@ export async function fetchFoodLog(user_id: string) {
     noStore();
     try {
 
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+
         const data = await sql<BabyFood>`SELECT bf.id, bf.name, bf.category, bf.age, fl.date, fl.opinion 
         FROM foodlog fl
         JOIN babyfoods bf ON fl.food_id = bf.id 
@@ -40,6 +44,8 @@ export async function fetchFoodLog(user_id: string) {
 export async function fetchTotalLogs(user_id: string) {
     noStore();
     try {
+
+        await new Promise((resolve) => setTimeout(resolve, 3000));
 
         const data = await sql`SELECT COUNT(*) AS total
         FROM foodlog fl

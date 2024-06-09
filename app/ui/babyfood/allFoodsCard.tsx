@@ -11,7 +11,7 @@ export default async function AllFoodsCard() {
     const foods = babyFoods.map((food, index) => {
     return <div 
         key={index} 
-        className="bg-slate-50 m-3 p-5 border-l-2 border-lime-600 hover:bg-slate-100 w-96 hover:shadow-lg w-full p-3 text-sm font-bold text-lime-800 flex flex-row justify-center items-center gap-4">
+        className="bg-slate-50 m-3 p-5 border-l-2 border-lime-600 hover:bg-slate-100 min-w-96 max-w-96 min-h-24 hover:shadow-lg p-3 text-sm font-bold text-lime-800 flex flex-row justify-center items-center gap-4">
             {food.name.toUpperCase()}
             <div className="flex flex-row gap-3">
                 <button type="button"><BsEmojiHeartEyes size="2em" color="grey" /></button>
@@ -23,7 +23,7 @@ export default async function AllFoodsCard() {
 
     return (
         <div className="m-4">
-            <div>{foods}</div>
+            {foods}
 
             <div className="text-center">
                 <WideMildButton name="More ideas" />

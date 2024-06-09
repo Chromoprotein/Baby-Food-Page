@@ -2,6 +2,7 @@ import Image from "next/image";
 import InfoCard from "./ui/infocard";
 import Input from "./ui/input";
 import WideButton from "./ui/wideButton";
+import DashboardSkeleton from "./ui/skeletons";
 
 export default function Home() {
   return (
