@@ -1,8 +1,7 @@
-import TotalLogsBar from '@/app/ui/baby/totalLogsBar';
 import { Suspense } from 'react';
-import { FoodLogSkeleton, TotalLogsBarSkeleton } from '@/app/ui/skeletons';
-import FoodCard from '@/app/ui/baby/foodCard';
+import { FoodLogSkeleton } from '@/app/ui/skeletons';
 import Image from 'next/image';
+import FoodLogWrapper from '@/app/ui/baby/foodLogWrapper';
 
 export default async function Page() {
 
@@ -22,12 +21,8 @@ export default async function Page() {
           </div>
         </div>
 
-        <Suspense fallback={<TotalLogsBarSkeleton/>}>
-          <TotalLogsBar/>
-        </Suspense>
-
-        <Suspense fallback={<FoodLogSkeleton />}>
-          <FoodCard />
+        <Suspense fallback={<FoodLogSkeleton/>}>
+          <FoodLogWrapper/>
         </Suspense>
 
     </div>

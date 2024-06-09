@@ -8,24 +8,22 @@ export default function DashboardSkeleton() {
 
 export function FoodLogSkeleton() {
     return (
-        <div className="mb-10">
-            <div className="border-t-2 shadow my-4 p-4 w-full min-h-24 md:w-2/3 mx-auto skeleton"></div>
-            <div className="border-t-2 shadow my-4 p-4 w-full min-h-24 md:w-2/3 mx-auto skeleton"></div>
-            <div className="border-t-2 shadow my-4 p-4 w-full min-h-24 md:w-2/3 mx-auto skeleton"></div>
-        </div>
-    )
-}
+        <>
+            <div className="mx-auto w-full md:w-1/2 m-10">
+                <div className="flex justify-between mb-1">
+                    <span className="text-sm font-medium text-slate-50">FOOD TASTING PROGRESS</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-5 skeleton">
+                </div>
+            </div>
 
-export function TotalLogsBarSkeleton() {
-    return (
-    <div className="mx-auto w-full md:w-1/2 m-10">
-        <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium text-slate-50">FOOD TASTING PROGRESS</span>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-5 skeleton">
-        </div>
-    </div>
-    );
+            <div className="mb-10">
+                <div className="border-t-2 shadow my-4 p-4 w-full min-h-24 md:w-2/3 mx-auto skeleton"></div>
+                <div className="border-t-2 shadow my-4 p-4 w-full min-h-24 md:w-2/3 mx-auto skeleton"></div>
+                <div className="border-t-2 shadow my-4 p-4 w-full min-h-24 md:w-2/3 mx-auto skeleton"></div>
+            </div>
+        </>
+    )
 }
 
 export function BabyFoodsSkeleton() {
