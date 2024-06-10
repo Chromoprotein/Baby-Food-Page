@@ -1,7 +1,7 @@
 import { CaterpillarButtonProps } from "../lib/definitions";
 import clsx from 'clsx';
 
-export default function CaterpillarButton({options, label, selectedOption}: CaterpillarButtonProps) {
+export default function CaterpillarButton({options, label, selectedOption, action, defaulty}: CaterpillarButtonProps) {
 
     const optionsLength = options.length - 1;
     const caterpillarButtons = options.map((option, index) => {
@@ -10,12 +10,16 @@ export default function CaterpillarButton({options, label, selectedOption}: Cate
                 key={index}
                 name={label}
                 value={option}
-                className={clsx('py-3 px-4 hover:bg-amber-500 text-sm font-bold text-lime-800',
+                onClick={action}
+                className={clsx('py-3 px-4 text-sm font-bold text-lime-800',
                 {'rounded-l-full': index === 0},
                 {'rounded-r-full': index === optionsLength },
-                {'bg-green-300': selectedOption === option},
-                {'bg-amber-300': selectedOption !== option}
+                {'bg-green-300': defaulty === option},
+                {'hover:bg-amber-700': defaulty === option},
+                {'hover:bg-amber-500': defaulty !== option},
+                {'bg-amber-300': defaulty !== option}
                 )}
+                defaultValue={defaulty}
             >
                 {option}
             </button>

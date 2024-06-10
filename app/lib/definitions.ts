@@ -1,3 +1,5 @@
+import React from "react";
+
 export type BabyFood = {
     id: string;
     name: string;
@@ -30,17 +32,22 @@ export type InfoCardProps = {
 
 export type InputProps = {
   name: string;
-  placeholder: string;
+  placeholder?: string;
+  action?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  defaulty?: string;
 }
 
 export type ButtonProps = {
   name: string;
+  action?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export type CaterpillarButtonProps = {
   options: string[];
   label: string;
   selectedOption: string;
+  action?: React.MouseEventHandler<HTMLButtonElement>;
+  defaulty?: string;
 }
 
 export type FoodCardPartProps = {

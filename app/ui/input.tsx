@@ -1,6 +1,6 @@
 import { InputProps } from "../lib/definitions";
 
-export default function Input({name, placeholder}: InputProps) {
+export default function Input({name, placeholder, action, defaulty}: InputProps) {
     return (
         <div className="flex flex-col my-3">
             <label 
@@ -15,6 +15,8 @@ export default function Input({name, placeholder}: InputProps) {
                 name={name} 
                 placeholder={placeholder} 
                 className="p-3 rounded-full border-2 border-lime-600 hover:shadow-lg" 
+                onChange={action}
+                defaultValue={defaulty}
             />
         </div>
     );
