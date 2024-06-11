@@ -1,12 +1,18 @@
-import { fetchBabyFoods } from "@/app/lib/data";
+import { fetchFilteredBabyFoods } from "@/app/lib/data";
 import WideMildButton from "../wideMildButton";
 import { BsEmojiAngry } from "react-icons/bs";
 import { BsEmojiHeartEyes } from "react-icons/bs";
 import { BsEmojiSmile } from "react-icons/bs";
+import { fetchTotalFilteredBabyFoods } from "@/app/lib/data";
+import Pagination from "../Pagination";
 
-export default async function AllFoodsCard() {
+export default async function AllFoodsCard({ query, category, currentPage } : { query: string; category: string; currentPage: number; }) {
 
-    const babyFoods = await fetchBabyFoods("410544b2-4001-4271-9855-fec4b6a6442a");
+    const userId = "410544b2-4001-4271-9855-fec4b6a6442a";
+    const babyFoods = await fetchFilteredBabyFoods(userId, query, category, currentPage);
+
+    const totalPages = await fetchTotalFilteredBabyFoods(userId, query, category);
+    console.log("test" + totalPages)
 
     const foods = babyFoods.map((food, index) => {
     return <div 
@@ -26,7 +32,7 @@ export default async function AllFoodsCard() {
             {foods}
 
             <div className="text-center">
-                <WideMildButton name="More ideas" />
+                <Pagination totalPages={totalPages} />
             </div>
         </div>
     );

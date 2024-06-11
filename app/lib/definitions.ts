@@ -40,12 +40,13 @@ export type InputProps = {
 export type ButtonProps = {
   name: string;
   action?: React.MouseEventHandler<HTMLButtonElement>;
+  href: string;
+  isDisabled: boolean;
 }
 
 export type CaterpillarButtonProps = {
   options: string[];
   label: string;
-  selectedOption: string;
   action?: React.MouseEventHandler<HTMLButtonElement>;
   defaulty?: string;
 }

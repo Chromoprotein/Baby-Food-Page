@@ -1,7 +1,7 @@
 import { CaterpillarButtonProps } from "../lib/definitions";
 import clsx from 'clsx';
 
-export default function CaterpillarButton({options, label, selectedOption, action, defaulty}: CaterpillarButtonProps) {
+export default function CaterpillarButton({options, label, action, defaulty}: CaterpillarButtonProps) {
 
     const optionsLength = options.length - 1;
     const caterpillarButtons = options.map((option, index) => {

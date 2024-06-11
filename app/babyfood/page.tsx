@@ -6,7 +6,19 @@ import WideButton from '../ui/wideButton';
 import Input from '../ui/input';
 import Search from '../ui/Search';
 
-export default async function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+    category?: string;
+    page?: string;
+  };
+}) {
+
+  const query = searchParams?.query || '';
+  const category = searchParams?.category || '';
+  const currentPage = Number(searchParams?.page) || 1;
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-start">
@@ -16,7 +28,7 @@ export default async function Page() {
       </div>
 
       <Suspense fallback={<BabyFoodsSkeleton />}>
-        <AllFoodsCard />
+        <AllFoodsCard query={query} category={category} currentPage={currentPage} />
       </Suspense>
 
     </div>
