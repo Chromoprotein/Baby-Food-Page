@@ -29,11 +29,19 @@ export function FoodLogSkeleton() {
 export function BabyFoodsSkeleton() {
     return (
         <div className="m-4">
-            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 max-w-96 min-h-24 p-3 skeleton"></div>
-            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 max-w-96 min-h-24 p-3 skeleton"></div>
-            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 max-w-96 min-h-24 p-3 skeleton"></div>
+            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 min-h-24 p-3 skeleton"></div>
+            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 min-h-24 p-3 skeleton"></div>
+            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 min-h-24 p-3 skeleton"></div>
+            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 min-h-24 p-3 skeleton"></div>
+            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 min-h-24 p-3 skeleton"></div>
+            <div className="bg-slate-50 m-3 p-5 border-l-2 min-w-96 min-h-24 p-3 skeleton"></div>
 
-            <div className="rounded-full mx-auto bg-slate-50 border-2 p-3 my-3 w-48 min-h-12 skeleton"></div>
+            <div className="flex flex-col md:flex-row justify-center items-center">
+                <div className="rounded-full bg-slate-50 border-2 p-3 m-3 w-48 h-12 skeleton">
+                </div>
+                <div className="rounded-full bg-slate-50 border-2 p-3 m-3 w-48 h-12 skeleton">
+                </div>
+            </div>
         </div>
     )
 }

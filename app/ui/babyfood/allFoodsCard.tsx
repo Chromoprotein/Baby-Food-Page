@@ -12,7 +12,6 @@ export default async function AllFoodsCard({ query, category, currentPage } : { 
     const babyFoods = await fetchFilteredBabyFoods(userId, query, category, currentPage);
 
     const totalPages = await fetchTotalFilteredBabyFoods(userId, query, category);
-    console.log("test" + totalPages)
 
     const foods = babyFoods.map((food, index) => {
     return <div 

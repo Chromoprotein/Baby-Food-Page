@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { BabyFoodsSkeleton } from '../ui/skeletons';
 import AllFoodsCard from '../ui/babyfood/allFoodsCard';
-import CaterpillarButton from '../ui/caterpillarButton';
-import WideButton from '../ui/wideButton';
-import Input from '../ui/input';
 import Search from '../ui/Search';
+
+// Page receives the search and pagination parameters as props directly from the URL
+// Passes them to allFoodsCard which fetches the data using them
 
 export default async function Page({
   searchParams,
@@ -20,6 +20,9 @@ export default async function Page({
   const category = searchParams?.category || '';
   const currentPage = Number(searchParams?.page) || 1;
 
+  // Keystring is needed to trigger Suspense
+  const keyString = `search=${query}${category}${currentPage}`;
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-start">
 
@@ -27,7 +30,7 @@ export default async function Page({
         <Search placeholder="Search foods" />
       </div>
 
-      <Suspense fallback={<BabyFoodsSkeleton />}>
+      <Suspense key={keyString} fallback={<BabyFoodsSkeleton />}>
         <AllFoodsCard query={query} category={category} currentPage={currentPage} />
       </Suspense>
 

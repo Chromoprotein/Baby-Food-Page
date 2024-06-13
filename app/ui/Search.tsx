@@ -27,7 +27,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
         replace(`${pathname}?${params.toString()}`);
     }, 300);
 
-    const handleCategory = useDebouncedCallback((term) => {
+    const handleCategory = ((term: string) => {
         const params = new URLSearchParams(searchParams);
         params.set('page', '1');
         if (term && term !== "X") {
@@ -36,7 +36,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
             params.delete('category');
         }
         replace(`${pathname}?${params.toString()}`);
-    }, 300);
+    });
  
   return (
     <>
