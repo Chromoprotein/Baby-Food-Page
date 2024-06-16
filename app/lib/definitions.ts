@@ -4,8 +4,7 @@ export type BabyFood = {
     id: string;
     name: string;
     category: string;
-    age: number;
-    opinion: string;
+    stage: number;
 };
 
 export type User = {
@@ -55,3 +54,11 @@ export type FoodCardPartProps = {
   opinion: JSX.Element;
   foods: BabyFood[];
 }
+
+export type AddFoodLog = {
+  id: string; // Will be created on the database
+  userId: string;
+  foodId: string;
+  opinion: 'love' | 'like' | 'dislike';
+  date: string;
+};
