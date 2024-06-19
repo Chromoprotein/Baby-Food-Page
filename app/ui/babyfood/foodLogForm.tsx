@@ -15,11 +15,14 @@ export default function FoodLogForm({
 
     const userId = "410544b2-4001-4271-9855-fec4b6a6442a";
 
+    const addFoodLogWithIds = addFoodLog.bind(null, {
+        foodId: food.id,
+        userId: userId,
+    });
+
   return (
-    <form action={addFoodLog} className="bg-slate-50 m-3 p-5 border-l-2 border-lime-600 min-w-96 max-w-96 min-h-24 p-3 text-sm font-bold text-slate-800 flex flex-row justify-center items-center gap-4">
+    <form action={addFoodLogWithIds} className="bg-slate-50 m-3 p-5 border-l-2 border-lime-600 min-w-96 max-w-96 min-h-24 p-3 text-sm font-bold text-slate-800 flex flex-row justify-center items-center gap-4">
         {food.name.toUpperCase()}
-        <input type="hidden" name="userId" value={userId} />
-        <input type="hidden" name="foodId" value={food.id} />
         <div className="flex flex-row gap-3">
 
             <div className="flex items-center">

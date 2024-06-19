@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -12,21 +13,39 @@ const FormSchema = z.object({
   date: z.string(),
 });
 
-const CreateFoodLog = FormSchema.omit({ id: true, date: true });
+// CREATE FOOD LOG
 
-export async function addFoodLog(formData: FormData) {
-  const { userId, foodId, opinion } = CreateFoodLog.parse({
-    userId: formData.get('userId'),
-    foodId: formData.get('foodId'),
+const CreateFoodLog = FormSchema.omit({ id: true, userId: true, foodId: true, date: true });
+
+export async function addFoodLog(ids: { foodId: string; userId: string }, formData: FormData) {
+  const { opinion } = CreateFoodLog.parse({
     opinion: formData.get('opinion'),
   });
+
+  console.log("testing user id " + ids.userId)
 
   const date = new Date().toISOString().split('T')[0];
 
   await sql`
     INSERT INTO foodlog (user_id, food_id, date, opinion)
-    VALUES (${userId}, ${foodId}, ${date}, ${opinion})
+    VALUES (${ids.userId}, ${ids.foodId}, ${date}, ${opinion})
   `;
 
   revalidatePath('/babyfood');
+}
+
+// UPDATE FOOD LOG
+
+const UpdateFoodLog = FormSchema.omit({ id: true, userId: true, foodId: true, date: true });
+
+export async function updateFoodLog(id: string, formData: FormData) {
+  const { opinion } = UpdateFoodLog.parse({
+    opinion: formData.get('opinion'),
+  });
+ 
+  console.log("test " + id)
+  await sql`UPDATE foodlog SET opinion = ${opinion} WHERE id = ${id}`;
+ 
+  revalidatePath('/babyfood/baby');
+  redirect('/babyfood/baby');
 }

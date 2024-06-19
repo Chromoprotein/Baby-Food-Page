@@ -19,7 +19,7 @@ export type Log = {
     id: string;
     name: string;
     category: string;
-    age: number;
+    stage: number;
     date: string;
     opinion: string;
 }
@@ -39,8 +39,8 @@ export type InputProps = {
 export type ButtonProps = {
   name: string;
   action?: React.MouseEventHandler<HTMLButtonElement>;
-  href: string;
-  isDisabled: boolean;
+  href?: string;
+  isDisabled?: boolean;
 }
 
 export type CaterpillarButtonProps = {

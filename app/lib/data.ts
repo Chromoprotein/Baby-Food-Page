@@ -2,12 +2,26 @@ import { sql } from '@vercel/postgres';
 import { BabyFood, User, Log } from './definitions';
 import { unstable_noStore as noStore } from 'next/cache';
 
+export async function fetchFoodLogById(id: string) {
+    noStore();
+
+    try {
+        const data = await sql<Log>`SELECT fl.id, bf.name, bf.category, bf.stage, fl.date, fl.opinion 
+        FROM foodlog fl
+        JOIN babyfoods bf ON fl.food_id = bf.id 
+        WHERE fl.id = ${id}`;
+        return data.rows[0];
+
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error('Failed to fetch food log data.');
+    }
+}
+
 export async function fetchFilteredBabyFoods(user_id: string, query: string, category: string, currentPage: number) {
     noStore();
     try {
 
-        
-        await new Promise((resolve) => setTimeout(resolve, 3000));
         const ITEMS_PER_PAGE = 6;
         const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
@@ -53,7 +67,7 @@ export async function fetchFoodLog(user_id: string) {
     noStore();
     try {
 
-        const data = await sql<BabyFood>`SELECT bf.id, bf.name, bf.category, bf.stage, fl.date, fl.opinion 
+        const data = await sql<Log>`SELECT fl.id, bf.name, bf.category, bf.stage, fl.date, fl.opinion 
         FROM foodlog fl
         JOIN babyfoods bf ON fl.food_id = bf.id 
         WHERE fl.user_id = ${user_id}`;
