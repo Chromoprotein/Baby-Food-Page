@@ -39,7 +39,7 @@ export type InputProps = {
 export type ButtonProps = {
   name: string;
   action?: React.MouseEventHandler<HTMLButtonElement>;
-  href?: string;
+  href?: URL;
   isDisabled?: boolean;
 }
 
