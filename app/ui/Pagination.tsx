@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import WideMildButton from './wideMildButton';
+import LinkButton from './wideMildButton';
  
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
@@ -18,9 +18,9 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
  
   return (
     <div className="flex flex-col md:flex-row justify-center items-center">
-        <WideMildButton name="Previous" href={createPageURL(currentPage - 1)}
+        <LinkButton name="Previous" href={createPageURL(currentPage - 1)}
         isDisabled={currentPage === 1} />
-        <WideMildButton name="Next" href={createPageURL(currentPage + 1)}
+        <LinkButton name="Next" href={createPageURL(currentPage + 1)}
         isDisabled={currentPage >= totalPages} />
     </div>
   );

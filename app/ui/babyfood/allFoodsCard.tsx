@@ -1,5 +1,4 @@
 import { fetchFilteredBabyFoods } from "@/app/lib/data";
-import WideMildButton from "../wideMildButton";
 import { fetchTotalFilteredBabyFoods } from "@/app/lib/data";
 import Pagination from "../Pagination";
 import FoodLogForm from "./foodLogForm";
