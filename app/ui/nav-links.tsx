@@ -9,7 +9,7 @@ export default function NavLinks() {
         },
         {
             name: "Stats",
-            href: "/babyfood/baby",
+            href: "/baby",
         }
     ]
 

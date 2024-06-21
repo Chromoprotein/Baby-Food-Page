@@ -63,6 +63,19 @@ export async function fetchTotalFilteredBabyFoods(user_id: string, query: string
     }
 }
 
+export async function fetchTotalBabyFoods() {
+    noStore();
+    try {
+
+        const data = await sql`SELECT COUNT(*) AS total FROM babyfoods`;
+
+        return Number(data.rows[0].total);
+    } catch (error) {
+        console.error('Database Error:', error);
+        throw new Error('Failed to fetch baby food data.');
+    }
+}
+
 export async function fetchFoodLog(user_id: string) {
     noStore();
     try {

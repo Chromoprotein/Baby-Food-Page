@@ -1,6 +1,5 @@
 import { FoodCardPartProps } from "@/app/lib/definitions";
 import { UpdateLogButton } from "./updateLogButton";
-import { DeleteLogButton } from "./deleteLogButton";
 
 export default function FoodCardPart({opinion, foods}: FoodCardPartProps) {
 
@@ -9,11 +8,11 @@ export default function FoodCardPart({opinion, foods}: FoodCardPartProps) {
             {opinion}
             {foods.length === 0 ? <p className="p-3 m-3">Nothing here yet</p> :
             foods.map((food, index) => {
-                    return <span key={index} className="rounded-full bg-green-100 p-3 m-3">
-                        {food.name} 
-                        <UpdateLogButton id={food.id} />
-                        <DeleteLogButton id={food.id} />
-                    </span>
+                    return <div key={index} className="rounded-full bg-green-100 p-3 m-3 flex justify-center items-center gap-2">
+                        <UpdateLogButton id={food.id}>
+                            {food.name} 
+                        </UpdateLogButton>
+                    </div>
                 })}
         </div>
     );

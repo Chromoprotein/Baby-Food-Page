@@ -64,8 +64,11 @@
 }
 
 input[type="radio"]:checked+label .emoji-radio {
-  outline: 2px solid #42e164;
-  background-color: #42e164;
+  color: rgb(33, 255, 33);
+}
+
+input[type="radio"]:focus+label .emoji-radio {
+  color: rgb(33, 255, 33);
 }
 
 .sr-only {

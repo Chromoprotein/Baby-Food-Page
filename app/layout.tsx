@@ -13,7 +13,9 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
     <html lang="en">
       <body className={`${inter.className} antialiased bg-white`}>
         <NavLinks/>
-        {children}
+        <div className="pt-36 w-full md:w-2/3 mx-auto h-min-screen">
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -62,3 +62,11 @@ export type AddFoodLog = {
   opinion: 'love' | 'like' | 'dislike';
   date: string;
 };
+
+export type RadioButtonProps = {
+  id: string;
+  name: string;
+  value: string;
+  emoji: JSX.Element;
+  defaultChecked?: boolean;
+}

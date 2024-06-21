@@ -43,9 +43,16 @@ export async function updateFoodLog(id: string, formData: FormData) {
     opinion: formData.get('opinion'),
   });
  
-  console.log("test " + id)
   await sql`UPDATE foodlog SET opinion = ${opinion} WHERE id = ${id}`;
  
-  revalidatePath('/babyfood/baby');
-  redirect('/babyfood/baby');
+  revalidatePath('/baby');
+  redirect('/baby');
+}
+
+// DELETE FOOD LOG
+
+export async function deleteFoodLog(id: string) {
+  await sql`DELETE FROM foodlog WHERE id = ${id}`;
+  revalidatePath('/baby');
+  redirect('/baby');
 }

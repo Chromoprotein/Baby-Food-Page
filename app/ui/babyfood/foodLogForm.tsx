@@ -6,6 +6,7 @@ import { BabyFood } from "@/app/lib/definitions";
 import { BsEmojiAngry } from "react-icons/bs";
 import { BsEmojiHeartEyes } from "react-icons/bs";
 import { BsEmojiSmile } from "react-icons/bs";
+import EmojiRadio from '../emojiRadio';
 
 export default function FoodLogForm({
   food,
@@ -25,26 +26,11 @@ export default function FoodLogForm({
         {food.name.toUpperCase()}
         <div className="flex flex-row gap-3">
 
-            <div className="flex items-center">
-                <input type="radio" id={`${food.id}love`} name="opinion" value="love" className="sr-only" />
-                <label htmlFor={`${food.id}love`} className="cursor-pointer">
-                    <span className="emoji-radio text-2xl">😍</span>
-                </label>
-            </div>
+            <EmojiRadio id={food.id} name="opinion" value="love" emoji={<BsEmojiHeartEyes/>}/>
 
-            <div className="flex items-center">
-                <input type="radio" id={`${food.id}like`} name="opinion" value="like" className="sr-only" />
-                <label htmlFor={`${food.id}like`} className="cursor-pointer">
-                    <span className="emoji-radio text-2xl">😀</span>
-                </label>
-            </div>
+            <EmojiRadio id={food.id} name="opinion" value="like" emoji={<BsEmojiSmile/>} />
 
-            <div className="flex items-center">
-                <input type="radio" id={`${food.id}dislike`} name="opinion" value="dislike" className="sr-only" />
-                <label htmlFor={`${food.id}dislike`} className="cursor-pointer">
-                    <span className="emoji-radio text-2xl">😠</span>
-                </label>
-            </div>
+            <EmojiRadio id={food.id} name="opinion" value="dislike" emoji={<BsEmojiAngry/>} />
 
             <button type="submit">Submit</button>
         </div>
