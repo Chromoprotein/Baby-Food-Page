@@ -2,6 +2,7 @@ import { sql } from '@vercel/postgres';
 import { BabyFood, User, Log } from './definitions';
 import { unstable_noStore as noStore } from 'next/cache';
 
+// Fetch a single food log entry for editing or deleting purposes
 export async function fetchFoodLogById(id: string) {
     noStore();
 
@@ -18,6 +19,7 @@ export async function fetchFoodLogById(id: string) {
     }
 }
 
+// Searching, filtering, and paginating
 export async function fetchFilteredBabyFoods(user_id: string, query: string, category: string, currentPage: number) {
     noStore();
     try {
@@ -42,6 +44,7 @@ export async function fetchFilteredBabyFoods(user_id: string, query: string, cat
     }
 }
 
+// Page number for pagination
 export async function fetchTotalFilteredBabyFoods(user_id: string, query: string, category: string) {
     noStore();
     try {
@@ -63,6 +66,7 @@ export async function fetchTotalFilteredBabyFoods(user_id: string, query: string
     }
 }
 
+// Number of baby foods in database
 export async function fetchTotalBabyFoods() {
     noStore();
     try {
@@ -76,6 +80,7 @@ export async function fetchTotalBabyFoods() {
     }
 }
 
+// All food logs
 export async function fetchFoodLog(user_id: string) {
     noStore();
     try {
@@ -92,6 +97,7 @@ export async function fetchFoodLog(user_id: string) {
     }
 }
 
+// Number of food log entries, for calculating progress
 export async function fetchTotalLogs(user_id: string) {
     noStore();
     try {

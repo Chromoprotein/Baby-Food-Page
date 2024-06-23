@@ -22,14 +22,16 @@ export async function addFoodLog(ids: { foodId: string; userId: string }, formDa
     opinion: formData.get('opinion'),
   });
 
-  console.log("testing user id " + ids.userId)
-
   const date = new Date().toISOString().split('T')[0];
 
-  await sql`
-    INSERT INTO foodlog (user_id, food_id, date, opinion)
-    VALUES (${ids.userId}, ${ids.foodId}, ${date}, ${opinion})
-  `;
+  try {
+    await sql`
+      INSERT INTO foodlog (user_id, food_id, date, opinion)
+      VALUES (${ids.userId}, ${ids.foodId}, ${date}, ${opinion})
+    `;
+  } catch (error) {
+    return { message: 'Database Error: Failed to log the food' };
+  }
 
   revalidatePath('/babyfood');
 }
@@ -43,8 +45,11 @@ export async function updateFoodLog(id: string, formData: FormData) {
     opinion: formData.get('opinion'),
   });
  
-  await sql`UPDATE foodlog SET opinion = ${opinion} WHERE id = ${id}`;
- 
+  try {
+    await sql`UPDATE foodlog SET opinion = ${opinion} WHERE id = ${id}`;
+  } catch (error) {
+    return { message: 'Database Error: Failed to update the food log' };
+  }
   revalidatePath('/baby');
   redirect('/baby');
 }
@@ -52,7 +57,11 @@ export async function updateFoodLog(id: string, formData: FormData) {
 // DELETE FOOD LOG
 
 export async function deleteFoodLog(id: string) {
-  await sql`DELETE FROM foodlog WHERE id = ${id}`;
+  try {
+    await sql`DELETE FROM foodlog WHERE id = ${id}`;
+  } catch (error) {
+    return { message: 'Database Error: Failed to delete the food log' };
+  }
   revalidatePath('/baby');
   redirect('/baby');
 }
