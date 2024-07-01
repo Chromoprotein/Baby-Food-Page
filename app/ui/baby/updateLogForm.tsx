@@ -15,13 +15,13 @@ export default function UpdateLogForm({ log }: { log: Log }) {
           {log.name.toUpperCase()}
           <div className="flex flex-row gap-3">
 
-            <EmojiRadio id={log.id} name="opinion" value="love" emoji={<BsEmojiHeartEyes/>} defaultChecked={log.opinion === "love"} />
+            <EmojiRadio food={log.name} value="love" emoji={<BsEmojiHeartEyes/>} defaultChecked={log.opinion === "love"} />
 
-              <EmojiRadio id={log.id} name="opinion" value="like" emoji={<BsEmojiSmile/>} defaultChecked={log.opinion === "like"} />
+            <EmojiRadio food={log.name} value="like" emoji={<BsEmojiSmile/>} defaultChecked={log.opinion === "like"} />
 
-              <EmojiRadio id={log.id} name="opinion" value="dislike" emoji={<BsEmojiAngry/>} defaultChecked={log.opinion === "dislike"} />
+            <EmojiRadio food={log.name} value="dislike" emoji={<BsEmojiAngry/>} defaultChecked={log.opinion === "dislike"} />
 
-              <button type="submit">Submit</button>
+            <button type="submit">Submit</button>
           </div>
       </form>
       

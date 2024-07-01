@@ -64,8 +64,7 @@ export type AddFoodLog = {
 };
 
 export type RadioButtonProps = {
-  id: string;
-  name: string;
+  food: string;
   value: string;
   emoji: JSX.Element;
   defaultChecked?: boolean;

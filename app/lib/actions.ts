@@ -9,7 +9,9 @@ const FormSchema = z.object({
   id: z.string(),
   userId: z.string(),
   foodId: z.string(),
-  opinion: z.enum(['love', 'like', 'dislike']),
+  opinion: z.enum(['love', 'like', 'dislike'], {
+    invalid_type_error: 'Please select an opinion',
+  }),
   date: z.string(),
 });
 
@@ -17,11 +19,20 @@ const FormSchema = z.object({
 
 const CreateFoodLog = FormSchema.omit({ id: true, userId: true, foodId: true, date: true });
 
-export async function addFoodLog(ids: { foodId: string; userId: string }, formData: FormData) {
-  const { opinion } = CreateFoodLog.parse({
+export async function addFoodLog(ids: { foodId: string; userId: string }, prevState: any, formData: FormData ) {
+
+  const validatedFields = CreateFoodLog.safeParse({
     opinion: formData.get('opinion'),
   });
 
+  // If form validation fails, return errors early. Otherwise, continue.
+  if (!validatedFields.success) {
+    return {
+      message: 'Select baby\'s opinion.',
+    };
+  }
+
+  const { opinion } = validatedFields.data;
   const date = new Date().toISOString().split('T')[0];
 
   try {
