@@ -10,7 +10,7 @@ export default function UpdateLogForm({ log }: { log: Log }) {
   const updateFoodLogWithId = updateFoodLog.bind(null, log.id);
  
   return (
-    <>
+    <div className="flex flex-row">
       <form action={updateFoodLogWithId} className="bg-slate-50 m-3 p-5 border-l-2 border-lime-600 min-w-96 max-w-96 min-h-24 p-3 text-sm font-bold text-slate-800 flex flex-row justify-center items-center gap-4">
           {log.name.toUpperCase()}
           <div className="flex flex-row gap-3">
@@ -26,6 +26,6 @@ export default function UpdateLogForm({ log }: { log: Log }) {
       </form>
       
       <DeleteLogButton id={log.id} />
-    </>
+    </div>
   );
 }

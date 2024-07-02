@@ -11,6 +11,7 @@ export default function EmojiRadio({food, value, emoji, defaultChecked = false}:
                 value={value} 
                 className="sr-only" 
                 defaultChecked={defaultChecked}
+                aria-describedby="opinion-error"
             />
             <label 
                 htmlFor={`${food} ${value}`} 

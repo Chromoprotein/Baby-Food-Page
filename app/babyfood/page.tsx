@@ -24,7 +24,7 @@ export default async function Page({
   const keyString = `search=${query}${category}${currentPage}`;
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-start">
+    <div className="flex pt-20 flex-col md:flex-row justify-center items-start">
 
       <div className="bg-slate-50 p-5 mb-10 w-96 border-t-2 border-lime-600 flex flex-col">
         <Search placeholder="Search foods" />

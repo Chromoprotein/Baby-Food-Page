@@ -17,9 +17,13 @@ const FormSchema = z.object({
 
 // CREATE FOOD LOG
 
+export type State = {
+  message?: string | null;
+} | undefined;
+
 const CreateFoodLog = FormSchema.omit({ id: true, userId: true, foodId: true, date: true });
 
-export async function addFoodLog(ids: { foodId: string; userId: string }, prevState: any, formData: FormData ) {
+export async function addFoodLog(ids: { foodId: string; userId: string }, prevState: State, formData: FormData ) {
 
   const validatedFields = CreateFoodLog.safeParse({
     opinion: formData.get('opinion'),

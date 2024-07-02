@@ -12,9 +12,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
 
     return (
-        <>
+        <div className="pt-20 flex justify-center items-center">
             <UpdateLogForm log={foodLogItem} />
-        </>
+        </div>
     );
 
 }

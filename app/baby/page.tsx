@@ -7,7 +7,7 @@ export default async function Page() {
 
   return (
     <div>
-        <div className="flex flex-row justify-center items-center">
+        <div className="flex pt-20 flex-row justify-center items-center">
           <Image
             priority
             src="/babyicon.webp"

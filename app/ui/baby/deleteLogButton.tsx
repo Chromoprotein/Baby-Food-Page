@@ -1,12 +1,12 @@
 import { deleteFoodLog } from "@/app/lib/actions";
-import { IoIosRemoveCircle } from "react-icons/io";
+import { MdDeleteForever } from "react-icons/md";
 
 export function DeleteLogButton({ id }: { id: string }) {
   const deleteInvoiceWithId = deleteFoodLog.bind(null, id);
-  console.log("id test " + id)
+
   return (
-    <form action={deleteInvoiceWithId}>
-      <button><IoIosRemoveCircle /></button>
+    <form action={deleteInvoiceWithId} className="my-auto">
+      <button><MdDeleteForever size="30" /></button>
     </form>
   );
 }
