@@ -2,8 +2,11 @@ import { Suspense } from 'react';
 import { FoodLogSkeleton } from '@/app/ui/skeletons';
 import Image from 'next/image';
 import FoodLogWrapper from '@/app/ui/baby/foodLogWrapper';
+import { auth } from '@/auth';
 
 export default async function Page() {
+
+  const session = await auth()
 
   return (
     <div>
@@ -17,7 +20,7 @@ export default async function Page() {
             alt="Baby icon"
           />
           <div>
-            <h1 className="text-lime-700 text-xl">Baby A - 6 months</h1>
+            <h1 className="text-lime-700 text-xl"><p>Welcome {session?.user?.name}!</p></h1>
           </div>
         </div>
 

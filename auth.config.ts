@@ -3,6 +3,11 @@
 
 import type { NextAuthConfig } from 'next-auth';
  
+type SessionProps = {
+  session: any;
+  token: any;
+};
+
 export const authConfig = {
   pages: {
     signIn: '/login',
@@ -20,6 +25,14 @@ export const authConfig = {
       }
       return true;
     },
+    session: async ({ session, token }: SessionProps) => {
+      if (session?.user) {
+        session.user.id = token.sub;
+        delete session.user.email; // sanitize data for security
+      }
+      return session;
+    },
+
   },
   providers: [], // Add providers with an empty array for now
 } satisfies NextAuthConfig;
