@@ -9,6 +9,7 @@ import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
 // for logging in
+// imports the signIn function from auth.ts
 
 export async function authenticate(
   prevState: string | undefined,
@@ -28,7 +29,6 @@ export async function authenticate(
     throw error;
   }
 }
-
 
 const FormSchema = z.object({
   id: z.string(),

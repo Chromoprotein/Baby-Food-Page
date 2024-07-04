@@ -3,9 +3,18 @@ import FoodCardPart from "./foodCardPart";
 import { BsEmojiHeartEyes } from "react-icons/bs";
 import { BsEmojiAngry } from "react-icons/bs";
 import { BsEmojiSmile } from "react-icons/bs";
+import { auth } from "@/auth";
 
 export default async function FoodCard() {
-    const babyFoods = await fetchFoodLog("410544b2-4001-4271-9855-fec4b6a6442a");
+
+    const session = await auth()
+
+    if (!session?.user?.id) {
+        // Handle the case where session or session.user.id is undefined
+        throw new Error("User is not authenticated");
+    }
+
+    const babyFoods = await fetchFoodLog(session?.user?.id);
 
     const loves = babyFoods.filter(item => item.opinion === 'love');
     const likes = babyFoods.filter(item => item.opinion === 'like');
