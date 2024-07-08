@@ -41,6 +41,7 @@ export type ButtonProps = {
   action?: React.MouseEventHandler<HTMLButtonElement>;
   href?: URL | string;
   isDisabled?: boolean;
+  type?: "button" | "submit";
 }
 
 export type CaterpillarButtonProps = {

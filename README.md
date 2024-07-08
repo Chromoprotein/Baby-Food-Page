@@ -1,36 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Baby food tracker
 
-## Getting Started
+This is a Next.js/Typescript website for tracking what foods your baby has tasted and how much your baby liked them. The purpose is to track foods without getting bogged down with details, focusing on food diversity.
 
-First, run the development server:
+app/page.tsx: The landing page. The registration form is here.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+app/baby/page.tsx: The statistics or profile page. It shows how many percentage of the database's foods the baby has tasted and groups the foods by opinion (love, like, dislike). You can click on the foods to edit the opinion.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+app/babyfoods/page.tsx: The food page. Currently, it shows a list of foods with a simple emoji-based form system. The foods are paginated and searchable. You can also filter main meals or snacks.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To do:
+- Currently, the website shows all the food options regardless of the baby's age. I shoul dcalculate the baby's age from the DOB, then show only stage 1 foods to 6-month-old babies, add stage 2 foods then the baby is 7 months, and add stage 3 foods when the baby is 9 months.

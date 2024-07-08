@@ -13,6 +13,7 @@ export default function Input({name, placeholder, action, defaulty}: InputProps)
             <input 
                 type="text" 
                 name={name} 
+                id={name}
                 placeholder={placeholder} 
                 className="p-3 rounded-full border-2 border-lime-600 hover:shadow-lg" 
                 onChange={action}

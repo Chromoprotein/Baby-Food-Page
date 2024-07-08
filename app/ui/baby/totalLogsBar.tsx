@@ -1,8 +1,8 @@
 import { fetchTotalLogs, fetchTotalBabyFoods } from "@/app/lib/data";
 
-export default async function TotalLogsBar() {
+export default async function TotalLogsBar({ userId }: { userId: string }) {
 
-  const totalLogs = await fetchTotalLogs("410544b2-4001-4271-9855-fec4b6a6442a");
+  const totalLogs = await fetchTotalLogs(userId);
 
   const totalFoods = await fetchTotalBabyFoods();
 

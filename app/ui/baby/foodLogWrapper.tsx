@@ -1,11 +1,11 @@
 import TotalLogsBar from '@/app/ui/baby/totalLogsBar';
 import FoodCard from '@/app/ui/baby/foodCard';
 
-export default function FoodLogWrapper() {
+export default function FoodLogWrapper({ userId }: { userId: string }) {
     return (
         <>
-            <TotalLogsBar />
-            <FoodCard />
+            <TotalLogsBar userId={userId} />
+            <FoodCard userId={userId} />
         </>
     );
 }

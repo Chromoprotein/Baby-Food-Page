@@ -8,7 +8,7 @@ export default function FoodCardPart({opinion, foods}: FoodCardPartProps) {
             {opinion}
             {foods.length === 0 ? <p className="p-3 m-3">Nothing here yet</p> :
             foods.map((food, index) => {
-                    return <div key={index} className="rounded-full bg-green-100 p-3 m-3 flex justify-center items-center gap-2">
+                    return <div key={`${opinion}-${index}`} className="rounded-full bg-green-100 p-3 m-3 flex justify-center items-center gap-2">
                         <UpdateLogButton id={food.id}>
                             {food.name} 
                         </UpdateLogButton>

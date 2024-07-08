@@ -4,9 +4,51 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+const bcrypt = require('bcrypt');
 
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import { FormState, toFormState, fromErrorToFormState } from './formValidation';
+
+// State for useFormState errors
+
+export type State = {
+  message?: string | null;
+} | undefined;
+
+// For registering a user
+
+const createMessageSchema = z.object({
+  name: z.string().min(1).max(191),
+  email: z.string().email(),
+  dob: z.string().date(),
+  password: z.string().min(8).max(191),
+});
+
+export async function registerUser(formState: FormState, formData: FormData ) {
+
+  try {
+
+    const { name, email, dob, password } = createMessageSchema.parse({
+      name: formData.get('name'),
+      email: formData.get('email'),
+      dob: formData.get('dob'),
+      password: formData.get('password'),
+    });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await sql`
+      INSERT INTO users (name, dob, email, password)
+      VALUES (${name}, ${dob}, ${email}, ${hashedPassword})
+    `;
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
+
+  return toFormState('SUCCESS', 'New user created');
+  redirect('/login');
+}
 
 // for logging in
 // imports the signIn function from auth.ts
@@ -30,6 +72,8 @@ export async function authenticate(
   }
 }
 
+// CREATE FOOD LOG
+
 const FormSchema = z.object({
   id: z.string(),
   userId: z.string(),
@@ -39,12 +83,6 @@ const FormSchema = z.object({
   }),
   date: z.string(),
 });
-
-// CREATE FOOD LOG
-
-export type State = {
-  message?: string | null;
-} | undefined;
 
 const CreateFoodLog = FormSchema.omit({ id: true, userId: true, foodId: true, date: true });
 

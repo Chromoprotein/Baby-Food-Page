@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import { auth, signOut } from '@/auth';
  
-export default function NavLinks() {
+export default async function NavLinks() {
 
     const links = [
         {
@@ -12,6 +13,8 @@ export default function NavLinks() {
             href: "/baby",
         }
     ]
+
+    const session = await auth()
 
   return (
     <div className="fixed w-full flex flex-row justify-start p-4 h-20 items-center z-10 gap-5 bg-gradient-to-b from-lime-50">
@@ -27,6 +30,21 @@ export default function NavLinks() {
           </Link>
         );
       })}
+      {session ?
+        <form
+            action={async () => {
+              'use server';
+              await signOut();
+            }}
+          >
+          <button className="text-black hover:text-lime-800 h-12 flex items-center px-5 m-0 text-center font-bold">Sign Out</button>
+        </form>
+      :           <Link
+            className="text-black hover:text-lime-800 h-12 flex items-center px-5 m-0 text-center font-bold"
+            href="/login"
+          >
+            <p>Login</p>
+          </Link>}
     </div>
   );
 }

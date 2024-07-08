@@ -1,10 +1,19 @@
+'use client';
+
 import Image from "next/image";
 import InfoCard from "./ui/infocard";
 import Input from "./ui/input";
 import WideButton from "./ui/wideButton";
 import DashboardSkeleton from "./ui/skeletons";
+import { registerUser } from "./lib/actions";
+import { EMPTY_FORM_STATE } from "./lib/formValidation";
+import { useFormState } from "react-dom";
+import { FieldError } from "./ui/fieldError";
 
 export default function Home() {
+
+  const [formState, action] = useFormState(registerUser, EMPTY_FORM_STATE);
+
   return (
     <main className="">
       <div className="relative w-full h-screen flex flex-col justify-center items-center bg-gradient-to-t from-white">
@@ -44,17 +53,24 @@ export default function Home() {
 
         </div>
 
-        <div className="w-full md:w-1/2 shadow mx-auto my-20 px-10 flex flex-col justify-center items-center border-t-2 border-lime-600 p-10">
+        <form action={action} className="w-full md:w-1/2 shadow mx-auto my-20 px-10 flex flex-col justify-center items-center border-t-2 border-lime-600 p-10">
           <h2 className="text-3xl text-lime-600 text-center pb-10">Register</h2>
           
-          <Input name="name" placeholder="Baby Bob"/>
+          <Input name="name" placeholder="Input name"/>
+          <FieldError formState={formState} name="name" />
 
-          <Input name="email" placeholder="myemail@mail.com"/>
+          <Input name="email" placeholder="Input email"/>
+          <FieldError formState={formState} name="email" />
 
-          <Input name="birthdate" placeholder="DD-MM-YYYY"/>
+          <Input name="password" placeholder="Input password"/>
+          <FieldError formState={formState} name="password" />
 
-          <WideButton name="Submit" />
-        </div>
+          <Input name="dob" placeholder="YYYY-MM-DD"/>
+          <FieldError formState={formState} name="dob" />
+
+          <WideButton name="Submit" type="submit" />
+
+        </form>
 
       </div>
     </main>

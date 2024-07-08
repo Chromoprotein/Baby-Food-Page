@@ -8,6 +8,11 @@ export default async function Page() {
 
   const session = await auth()
 
+  if (!session?.user?.id) {
+      // Handle the case where session or session.user.id is undefined
+      throw new Error("User is not authenticated");
+  }
+
   return (
     <div>
         <div className="flex pt-20 flex-row justify-center items-center">
@@ -25,7 +30,7 @@ export default async function Page() {
         </div>
 
         <Suspense fallback={<FoodLogSkeleton/>}>
-          <FoodLogWrapper/>
+          <FoodLogWrapper userId={session?.user?.id}/>
         </Suspense>
 
     </div>
