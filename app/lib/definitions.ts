@@ -34,6 +34,7 @@ export type InputProps = {
   placeholder?: string;
   action?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   defaulty?: string;
+  inputType?: string;
 }
 
 export type ButtonProps = {

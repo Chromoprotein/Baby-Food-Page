@@ -1,6 +1,6 @@
 import { InputProps } from "../lib/definitions";
 
-export default function Input({name, placeholder, action, defaulty, type = "text"}: InputProps) {
+export default function Input({name, placeholder, action, defaulty, inputType = "text"}: InputProps) {
     return (
         <div className="flex flex-col my-3">
             <label 
@@ -11,7 +11,7 @@ export default function Input({name, placeholder, action, defaulty, type = "text
             </label>
 
             <input 
-                type={type}
+                type={inputType}
                 name={name} 
                 id={name}
                 placeholder={placeholder} 

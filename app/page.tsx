@@ -70,7 +70,7 @@ export default function Home() {
           <Input name="email" placeholder="Input email"/>
           <FieldError formState={formState} name="email" />
 
-          <Input name="password" placeholder="Input password" type="password"/>
+          <Input name="password" placeholder="Input password" inputType="password"/>
           <FieldError formState={formState} name="password" />
 
           <Input name="dob" placeholder="YYYY-MM-DD"/>

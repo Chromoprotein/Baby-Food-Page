@@ -34,16 +34,16 @@ export default async function NavLinks() {
       })}
       {session ?
         <form
-            action={async () => {
-              'use server';
-              await signOut();
-              revalidatePath('/login');
-              redirect('/login');
-            }}
-          >
+          action={async () => {
+            'use server';
+            await signOut();
+            revalidatePath('/login');
+            redirect('/login');
+          }}
+        >
           <button className="text-black hover:text-lime-800 h-12 flex items-center px-5 m-0 text-center font-bold">Sign Out</button>
         </form>
-      :           <Link
+      :   <Link
             className="text-black hover:text-lime-800 h-12 flex items-center px-5 m-0 text-center font-bold"
             href="/login"
           >
