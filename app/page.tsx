@@ -43,7 +43,7 @@ export default function Home() {
 
         <div className="flex flex-col md:flex-row flex-wrap gap-2 justify-center items-center">
 
-          <InfoCard imgSrc="/babyicon.webp">Add your baby&apos;s birthdate</InfoCard>
+          <InfoCard imgSrc="/messybabyicon.webp">Add your baby&apos;s birthdate</InfoCard>
 
           <InfoCard imgSrc="/babyfoodicon.webp">Get recs for age-appropriate foods</InfoCard>
 
