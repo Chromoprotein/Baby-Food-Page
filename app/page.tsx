@@ -43,9 +43,9 @@ export default function Home() {
 
         <div className="flex flex-col md:flex-row flex-wrap gap-2 justify-center items-center">
 
-          <InfoCard imgSrc="/babyicon.webp">Add your baby&apos;s birthdate</InfoCard>
+          <InfoCard imgSrc="/babyicon.png">Add your baby&apos;s birthdate</InfoCard>
 
-          <InfoCard imgSrc="/babyfoodicon.webp">Get recs for age-appropriate foods</InfoCard>
+          <InfoCard imgSrc="/babyfoodicon.png">Get recs for age-appropriate foods</InfoCard>
 
           <InfoCard imgSrc="/jarsicon.webp">Check foods off the list as your baby tastes them</InfoCard>
 
