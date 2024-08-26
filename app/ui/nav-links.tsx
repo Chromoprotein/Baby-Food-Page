@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { auth, signOut } from '@/auth';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
  
 export default async function NavLinks() {
 
@@ -35,6 +37,8 @@ export default async function NavLinks() {
             action={async () => {
               'use server';
               await signOut();
+              revalidatePath('/login');
+              redirect('/login');
             }}
           >
           <button className="text-black hover:text-lime-800 h-12 flex items-center px-5 m-0 text-center font-bold">Sign Out</button>

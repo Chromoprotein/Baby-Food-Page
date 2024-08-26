@@ -47,7 +47,6 @@ export async function registerUser(formState: FormState, formData: FormData ) {
   }
 
   return toFormState('SUCCESS', 'New user created');
-  redirect('/login');
 }
 
 // for logging in
@@ -70,6 +69,8 @@ export async function authenticate(
     }
     throw error;
   }
+  revalidatePath('/babyfood');
+  redirect('/babyfood');
 }
 
 // CREATE FOOD LOG

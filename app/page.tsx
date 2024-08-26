@@ -9,10 +9,18 @@ import { registerUser } from "./lib/actions";
 import { EMPTY_FORM_STATE } from "./lib/formValidation";
 import { useFormState } from "react-dom";
 import { FieldError } from "./ui/fieldError";
+import { useState } from "react";
 
 export default function Home() {
 
   const [formState, action] = useFormState(registerUser, EMPTY_FORM_STATE);
+
+  const scrollToElement = () => {
+    const element = document.getElementById('target-element');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <main className="">
@@ -33,7 +41,7 @@ export default function Home() {
         <div className="text-black relative flex flex-col justify-center items-center gap-4 w-96 mt-10">
           <h1 className="text-3xl text-lime-800 tracking-wide font-bold p-1 m-1 text-center">Baby food tracking made simple</h1>
           <p className="font-medium text-lg tracking-wide text-center p-1 m-1 w-96">Focus on food diversity with this easy-to-use tracker without unnecessary micromanagement</p>
-          <WideButton name="Get started" />
+          <WideButton name="Get started" action={scrollToElement} />
         </div>
 
       </div>
@@ -53,7 +61,7 @@ export default function Home() {
 
         </div>
 
-        <form action={action} className="w-full md:w-1/2 shadow mx-auto my-20 px-10 flex flex-col justify-center items-center border-t-2 border-lime-600 p-10">
+        <form action={action} className="w-full md:w-1/2 shadow mx-auto my-20 px-10 flex flex-col justify-center items-center border-t-2 border-lime-600 p-10" id="target-element">
           <h2 className="text-3xl text-lime-600 text-center pb-10">Register</h2>
           
           <Input name="name" placeholder="Input name"/>
@@ -62,13 +70,15 @@ export default function Home() {
           <Input name="email" placeholder="Input email"/>
           <FieldError formState={formState} name="email" />
 
-          <Input name="password" placeholder="Input password"/>
+          <Input name="password" placeholder="Input password" type="password"/>
           <FieldError formState={formState} name="password" />
 
           <Input name="dob" placeholder="YYYY-MM-DD"/>
           <FieldError formState={formState} name="dob" />
 
           <WideButton name="Submit" type="submit" />
+
+          {formState.message && formState.message}
 
         </form>
 
