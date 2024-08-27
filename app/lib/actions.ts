@@ -19,10 +19,10 @@ export type State = {
 // For registering a user
 
 const createMessageSchema = z.object({
-  name: z.string().min(1).max(191),
-  email: z.string().email(),
-  dob: z.string().date(),
-  password: z.string().min(8).max(191),
+  name: z.string().min(1, {  message: "Username must be longer than 1 character" }).max(191, {  message: "Username must be between 1-191 characters long" }),
+  email: z.string().email("Must be a valid email"),
+  dob: z.string().date("Date must be in YYYY-MM-DD (year-month-day) format"),
+  password: z.string().min(8, "Password must be at least 8 characters long").max(191, "Password must be between 8-191 characters long"),
 });
 
 export async function registerUser(formState: FormState, formData: FormData ) {
@@ -62,7 +62,7 @@ export async function authenticate(
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return 'Invalid credentials.';
+          return 'Incorrect email or password.';
         default:
           return 'Something went wrong.';
       }
@@ -79,9 +79,7 @@ const FormSchema = z.object({
   id: z.string(),
   userId: z.string(),
   foodId: z.string(),
-  opinion: z.enum(['love', 'like', 'dislike'], {
-    invalid_type_error: 'Please select an opinion',
-  }),
+  opinion: z.enum(['love', 'like', 'dislike']),
   date: z.string(),
 });
 

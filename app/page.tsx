@@ -9,7 +9,13 @@ import { registerUser } from "./lib/actions";
 import { EMPTY_FORM_STATE } from "./lib/formValidation";
 import { useFormState } from "react-dom";
 import { FieldError } from "./ui/fieldError";
-import { useState } from "react";
+import { useRef } from "react";
+import { useFormStatus } from "react-dom";
+
+function Submit() {
+  const { pending } = useFormStatus();
+  return <WideButton name={pending ? "Sending..." : "Submit"} type="submit" isDisabled={pending} />
+}
 
 export default function Home() {
 
@@ -21,6 +27,12 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  if (formRef.current && formState.status === 'SUCCESS') {
+    formRef.current.reset();
+  }
 
   return (
     <main className="">
@@ -61,10 +73,10 @@ export default function Home() {
 
         </div>
 
-        <form action={action} className="w-full md:w-1/2 shadow mx-auto my-20 px-10 flex flex-col justify-center items-center border-t-2 border-lime-600 p-10" id="target-element">
+        <form action={action} className="w-full md:w-1/2 shadow mx-auto my-20 px-10 flex flex-col justify-center items-center border-t-2 border-lime-600 p-10" id="target-element" ref={formRef}>
           <h2 className="text-3xl text-lime-600 text-center pb-10">Register</h2>
           
-          <Input name="name" placeholder="Input name"/>
+          <Input label="Baby name" name="name" placeholder="Input name"/>
           <FieldError formState={formState} name="name" />
 
           <Input name="email" placeholder="Input email"/>
@@ -73,13 +85,13 @@ export default function Home() {
           <Input name="password" placeholder="Input password" inputType="password"/>
           <FieldError formState={formState} name="password" />
 
-          <Input name="dob" placeholder="YYYY-MM-DD"/>
+          <Input label="Baby birth date" name="dob" placeholder="YYYY-MM-DD"/>
           <FieldError formState={formState} name="dob" />
 
-          <WideButton name="Submit" type="submit" />
+          <Submit />
 
           {formState.message && formState.message}
-
+          
         </form>
 
       </div>

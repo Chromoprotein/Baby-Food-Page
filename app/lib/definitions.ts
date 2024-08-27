@@ -31,6 +31,7 @@ export type InfoCardProps = {
 
 export type InputProps = {
   name: string;
+  label?: string;
   placeholder?: string;
   action?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   defaulty?: string;
