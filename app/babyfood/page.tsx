@@ -13,16 +13,18 @@ export default async function Page({
   searchParams?: {
     query?: string;
     category?: string;
+    stage?: string;
     page?: string;
   };
 }) {
 
   const query = searchParams?.query || '';
   const category = searchParams?.category || '';
+  const stage = Number(searchParams?.stage);
   const currentPage = Number(searchParams?.page) || 1;
 
   // Keystring is needed to trigger Suspense
-  const keyString = `search=${query}${category}${currentPage}`;
+  const keyString = `search=${query}${category}${stage}${currentPage}`;
 
   const session = await auth()
 
@@ -39,7 +41,7 @@ export default async function Page({
       </div>
 
       <Suspense key={keyString} fallback={<BabyFoodsSkeleton />}>
-        <AllFoodsCard query={query} category={category} currentPage={currentPage} userId={session?.user?.id}/>
+        <AllFoodsCard query={query} category={category} stage={stage} currentPage={currentPage} userId={session?.user?.id}/>
       </Suspense>
 
     </div>

@@ -30,10 +30,21 @@ export default function Search({ placeholder }: { placeholder: string }) {
     const handleCategory = ((term: string) => {
         const params = new URLSearchParams(searchParams);
         params.set('page', '1');
-        if (term && term !== "X") {
+        if (term && term !== "ALL") {
             params.set('category', term);
         } else {
             params.delete('category');
+        }
+        replace(`${pathname}?${params.toString()}`);
+    });
+
+    const handleStage = ((term: string) => {
+        const params = new URLSearchParams(searchParams);
+        params.set('page', '1');
+        if (term && term !== "ALL") {
+            params.set('stage', term);
+        } else {
+            params.delete('stage');
         }
         replace(`${pathname}?${params.toString()}`);
     });
@@ -41,13 +52,23 @@ export default function Search({ placeholder }: { placeholder: string }) {
   return (
     <>
         <CaterpillarButton 
-            options={["MAIN MEALS", "SNACKS", "X"]} 
+            options={["MAIN MEALS", "SNACKS", "ALL"]} 
             label="CATEGORY"
             action={(e) => { 
                 const target = e.target as HTMLButtonElement;
                 handleCategory(target.value); 
             }}
             defaulty={searchParams.get('category')?.toString()}
+        />
+
+        <CaterpillarButton 
+            options={["1", "2", "3", "ALL"]} 
+            label="STAGE (1 = 4-6 months, 2 = 6-9 months, 3 = 10-12 months)"
+            action={(e) => { 
+                const target = e.target as HTMLButtonElement;
+                handleStage(target.value); 
+            }}
+            defaulty={searchParams.get('stage')?.toString()}
         />
 
         <div className="p-3">
