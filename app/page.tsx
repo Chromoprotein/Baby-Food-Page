@@ -34,6 +34,8 @@ export default function Home() {
     formRef.current.reset();
   }
 
+  const messageColor = (formState.status && formState.status === 'SUCCESS') ? "text-green-400" : "text-red-400";
+
   return (
     <main className="">
       <div className="relative w-full h-screen flex flex-col justify-center items-center bg-gradient-to-t from-white">
@@ -90,7 +92,9 @@ export default function Home() {
 
           <Submit />
 
-          {formState.message && formState.message}
+          {formState.message && 
+            <p className={`text-xs ${messageColor}`}>{formState.status + ": " + formState.message}</p>
+          }
           
         </form>
 
