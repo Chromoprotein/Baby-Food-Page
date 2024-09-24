@@ -24,7 +24,7 @@ export async function fetchFilteredBabyFoods(user_id: string, query: string, cat
     noStore();
     try {
 
-        console.log("query: " + category + " " + stage + " " + query);
+        console.log("category is: " + category + " stage is " + stage + " query is " + query);
 
         const ITEMS_PER_PAGE = 6;
         const offset = (currentPage - 1) * ITEMS_PER_PAGE;
